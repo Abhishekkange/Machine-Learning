@@ -1,0 +1,21 @@
+actor,is_male,is_indian,is_over_35,worked_in_movies,is_action_actor,is_romance_actor,is_comedy_actor,is_drama_actor
+Shah Rukh Khan,yes,yes,yes,yes,no,yes,no,no
+Salman Khan,yes,yes,yes,yes,yes,no,no,no
+Aamir Khan,yes,yes,yes,yes,no,no,no,yes
+Akshay Kumar,yes,yes,yes,yes,yes,no,no,no
+Hrithik Roshan,yes,yes,yes,yes,yes,no,no,no
+Ranbir Kapoor,yes,yes,no,yes,no,yes,no,no
+Ranveer Singh,yes,yes,no,yes,no,no,no,yes
+Ayushmann Khurrana,yes,yes,no,yes,no,no,yes,no
+Varun Dhawan,yes,yes,no,yes,no,no,yes,no
+Vicky Kaushal,yes,yes,no,yes,no,no,no,yes
+Priyanka Chopra,no,yes,yes,yes,no,no,no,yes
+Deepika Padukone,no,yes,yes,yes,no,yes,no,no
+Alia Bhatt,no,yes,no,yes,no,no,no,yes
+Katrina Kaif,no,yes,yes,yes,yes,no,no,no
+Anushka Sharma,no,yes,no,yes,no,yes,no,no
+Vidya Balan,no,yes,yes,yes,no,no,no,yes
+Kareena Kapoor,no,yes,yes,yes,no,yes,no,no
+Taapsee Pannu,no,yes,no,yes,no,no,no,yes
+Rani Mukerji,no,yes,yes,yes,no,no,no,yes
+Jacqueline Fernandez,no,yes,no,yes,no,no,yes,no

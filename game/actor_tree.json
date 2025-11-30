@@ -1,0 +1,218 @@
+{
+  "nodes": {
+    "0": {
+      "type": "internal",
+      "feature": "is_romance_actor_n",
+      "threshold": 0.5,
+      "left": 1,
+      "right": 16,
+      "samples": 20,
+      "question": "Is he romance actor ?",
+      "left_label": "No",
+      "right_label": "Yes"
+    },
+    "1": {
+      "type": "internal",
+      "feature": "is_male_n",
+      "threshold": 0.5,
+      "left": 2,
+      "right": 9,
+      "samples": 15,
+      "question": "Is the actor male or Female",
+      "left_label": "Female",
+      "right_label": "Male"
+    },
+    "2": {
+      "type": "internal",
+      "feature": "is_drama_actor_n",
+      "threshold": 0.5,
+      "left": 3,
+      "right": 6,
+      "samples": 7,
+      "question": "Is he drama actor ?",
+      "left_label": "No",
+      "right_label": "Yes"
+    },
+    "3": {
+      "type": "internal",
+      "feature": "is_over_35_n",
+      "threshold": 0.5,
+      "left": 4,
+      "right": 5,
+      "samples": 2,
+      "question": "Is the actor over 35 years old",
+      "left_label": "No",
+      "right_label": "Yes"
+    },
+    "4": {
+      "type": "leaf",
+      "predicted_class": "Jacqueline Fernandez",
+      "samples": 1
+    },
+    "5": {
+      "type": "leaf",
+      "predicted_class": "Katrina Kaif",
+      "samples": 1
+    },
+    "6": {
+      "type": "internal",
+      "feature": "is_over_35_n",
+      "threshold": 0.5,
+      "left": 7,
+      "right": 8,
+      "samples": 5,
+      "question": "Is the actor over 35 years old",
+      "left_label": "No",
+      "right_label": "Yes"
+    },
+    "7": {
+      "type": "leaf",
+      "predicted_class": "Alia Bhatt",
+      "samples": 2
+    },
+    "8": {
+      "type": "leaf",
+      "predicted_class": "Priyanka Chopra",
+      "samples": 3
+    },
+    "9": {
+      "type": "internal",
+      "feature": "is_action_actor_n",
+      "threshold": 0.5,
+      "left": 10,
+      "right": 15,
+      "samples": 8,
+      "question": "Is he action actor ?",
+      "left_label": "No",
+      "right_label": "Yes"
+    },
+    "10": {
+      "type": "internal",
+      "feature": "is_comedy_actor_n",
+      "threshold": 0.5,
+      "left": 11,
+      "right": 14,
+      "samples": 5,
+      "question": "Is he comedy actor ?",
+      "left_label": "No",
+      "right_label": "Yes"
+    },
+    "11": {
+      "type": "internal",
+      "feature": "is_over_35_n",
+      "threshold": 0.5,
+      "left": 12,
+      "right": 13,
+      "samples": 3,
+      "question": "Is the actor over 35 years old",
+      "left_label": "No",
+      "right_label": "Yes"
+    },
+    "12": {
+      "type": "leaf",
+      "predicted_class": "Ranveer Singh",
+      "samples": 2
+    },
+    "13": {
+      "type": "leaf",
+      "predicted_class": "Aamir Khan",
+      "samples": 1
+    },
+    "14": {
+      "type": "leaf",
+      "predicted_class": "Ayushmann Khurrana",
+      "samples": 2
+    },
+    "15": {
+      "type": "leaf",
+      "predicted_class": "Akshay Kumar",
+      "samples": 3
+    },
+    "16": {
+      "type": "internal",
+      "feature": "is_over_35_n",
+      "threshold": 0.5,
+      "left": 17,
+      "right": 20,
+      "samples": 5,
+      "question": "Is the actor over 35 years old",
+      "left_label": "No",
+      "right_label": "Yes"
+    },
+    "17": {
+      "type": "internal",
+      "feature": "is_male_n",
+      "threshold": 0.5,
+      "left": 18,
+      "right": 19,
+      "samples": 2,
+      "question": "Is the actor male or Female",
+      "left_label": "Female",
+      "right_label": "Male"
+    },
+    "18": {
+      "type": "leaf",
+      "predicted_class": "Anushka Sharma",
+      "samples": 1
+    },
+    "19": {
+      "type": "leaf",
+      "predicted_class": "Ranbir Kapoor",
+      "samples": 1
+    },
+    "20": {
+      "type": "internal",
+      "feature": "is_male_n",
+      "threshold": 0.5,
+      "left": 21,
+      "right": 22,
+      "samples": 3,
+      "question": "Is the actor male or Female",
+      "left_label": "Female",
+      "right_label": "Male"
+    },
+    "21": {
+      "type": "leaf",
+      "predicted_class": "Deepika Padukone",
+      "samples": 2
+    },
+    "22": {
+      "type": "leaf",
+      "predicted_class": "Shah Rukh Khan",
+      "samples": 1
+    }
+  },
+  "root": 0,
+  "feature_names": [
+    "is_male_n",
+    "is_indian_n",
+    "is_over_35_n",
+    "worked_in_movies_n",
+    "is_action_actor_n",
+    "is_romance_actor_n",
+    "is_comedy_actor_n",
+    "is_drama_actor_n"
+  ],
+  "class_names": [
+    "Aamir Khan",
+    "Akshay Kumar",
+    "Alia Bhatt",
+    "Anushka Sharma",
+    "Ayushmann Khurrana",
+    "Deepika Padukone",
+    "Hrithik Roshan",
+    "Jacqueline Fernandez",
+    "Kareena Kapoor",
+    "Katrina Kaif",
+    "Priyanka Chopra",
+    "Ranbir Kapoor",
+    "Rani Mukerji",
+    "Ranveer Singh",
+    "Salman Khan",
+    "Shah Rukh Khan",
+    "Taapsee Pannu",
+    "Varun Dhawan",
+    "Vicky Kaushal",
+    "Vidya Balan"
+  ]
+}

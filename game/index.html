@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Guess the Actor</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 30px;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .question {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 18px;
+            margin: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid #333;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .result {
+            font-size: 24px;
+            margin-top: 24px;
+            color: #0a6;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Guess the Actor</h1>
+    <div id="game">
+        <div id="questionBox" class="question">Loading...</div>
+        <div id="options"></div>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        let treeData = null;
+        let currentNodeId = null;
+
+        async function loadTree() {
+            const res = await fetch('actor_tree.json');
+            treeData = await res.json();
+        }
+
+        function showNode(nodeId) {
+            const node = treeData.nodes[nodeId];
+            const qBox = document.getElementById('questionBox');
+            const options = document.getElementById('options');
+            const result = document.getElementById('result');
+
+            result.textContent = '';
+            options.innerHTML = '';
+
+            if (node.type === 'leaf') {
+                qBox.textContent = '🎯 I guess: ' + node.predicted_class;
+                // optionally show confidence or samples
+                const info = document.createElement('div');
+                info.textContent = 'Samples: ' + node.samples;
+                options.appendChild(info);
+
+                // show restart button
+                const restart = document.createElement('button');
+                restart.className = 'btn';
+                restart.textContent = 'Play again';
+                restart.onclick = () => { currentNodeId = treeData.root; showNode(currentNodeId); };
+                options.appendChild(restart);
+                return;
+            }
+
+            // internal node
+            qBox.textContent = node.question;
+            // left button (corresponds to condition <= threshold)
+            const leftBtn = document.createElement('button');
+            leftBtn.className = 'btn';
+            leftBtn.textContent = node.left_label;
+            leftBtn.onclick = () => { currentNodeId = node.left; showNode(String(currentNodeId)); };
+
+            const rightBtn = document.createElement('button');
+            rightBtn.className = 'btn';
+            rightBtn.textContent = node.right_label;
+            rightBtn.onclick = () => { currentNodeId = node.right; showNode(String(currentNodeId)); };
+
+            options.appendChild(leftBtn);
+            options.appendChild(rightBtn);
+
+            // small hint about what each choice means (optional)
+            const hint = document.createElement('div');
+            hint.style.marginTop = '8px';
+            hint.style.fontSize = '12px';
+            hint.style.color = '#666';
+            hint.textContent = `(Choosing "${node.left_label}" follows left branch; "${node.right_label}" follows right branch.)`;
+            options.appendChild(hint);
+        }
+
+        // initialize
+        (async function () {
+            await loadTree();
+            currentNodeId = String(treeData.root);
+            showNode(currentNodeId);
+        })();
+    </script>
+</body>
+
+</html>
