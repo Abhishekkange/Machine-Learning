@@ -2,45 +2,45 @@
   "nodes": {
     "0": {
       "type": "internal",
-      "feature": "is_romance_actor_n",
+      "feature": "is_over_35_n",
       "threshold": 0.5,
       "left": 1,
-      "right": 16,
+      "right": 14,
       "samples": 20,
-      "question": "Is he romance actor ?",
+      "question": "Is the actor over 35 years old",
       "left_label": "No",
       "right_label": "Yes"
     },
     "1": {
       "type": "internal",
-      "feature": "is_male_n",
+      "feature": "is_father_famous_n",
       "threshold": 0.5,
       "left": 2,
       "right": 9,
-      "samples": 15,
-      "question": "Is the actor male or Female",
-      "left_label": "Female",
-      "right_label": "Male"
+      "samples": 9,
+      "question": "Is your actor's Father famous ?",
+      "left_label": "No",
+      "right_label": "Yes"
     },
     "2": {
       "type": "internal",
-      "feature": "is_drama_actor_n",
+      "feature": "has_kids_n",
       "threshold": 0.5,
       "left": 3,
-      "right": 6,
-      "samples": 7,
-      "question": "Is he drama actor ?",
+      "right": 8,
+      "samples": 5,
+      "question": "Does your actor have kids ?",
       "left_label": "No",
       "right_label": "Yes"
     },
     "3": {
       "type": "internal",
-      "feature": "is_over_35_n",
+      "feature": "nationality_indian_n",
       "threshold": 0.5,
       "left": 4,
       "right": 5,
-      "samples": 2,
-      "question": "Is the actor over 35 years old",
+      "samples": 4,
+      "question": "Is your actor indian ?",
       "left_label": "No",
       "right_label": "Yes"
     },
@@ -50,135 +50,215 @@
       "samples": 1
     },
     "5": {
-      "type": "leaf",
-      "predicted_class": "Katrina Kaif",
-      "samples": 1
+      "type": "internal",
+      "feature": "is_male_n",
+      "threshold": 0.5,
+      "left": 6,
+      "right": 7,
+      "samples": 3,
+      "question": "Is the actor male or Female",
+      "left_label": "Female",
+      "right_label": "Male"
     },
     "6": {
-      "type": "internal",
-      "feature": "is_over_35_n",
-      "threshold": 0.5,
-      "left": 7,
-      "right": 8,
-      "samples": 5,
-      "question": "Is the actor over 35 years old",
-      "left_label": "No",
-      "right_label": "Yes"
+      "type": "leaf",
+      "predicted_class": "Taapsee Pannu",
+      "samples": 1
     },
     "7": {
       "type": "leaf",
-      "predicted_class": "Alia Bhatt",
+      "predicted_class": "Ranveer Singh",
       "samples": 2
     },
     "8": {
       "type": "leaf",
-      "predicted_class": "Priyanka Chopra",
-      "samples": 3
+      "predicted_class": "Anushka Sharma",
+      "samples": 1
     },
     "9": {
       "type": "internal",
-      "feature": "is_action_actor_n",
+      "feature": "film_producer_n",
       "threshold": 0.5,
       "left": 10,
-      "right": 15,
-      "samples": 8,
-      "question": "Is he action actor ?",
+      "right": 11,
+      "samples": 4,
+      "question": "Is you actor a film producer as well ?",
       "left_label": "No",
       "right_label": "Yes"
     },
     "10": {
-      "type": "internal",
-      "feature": "is_comedy_actor_n",
-      "threshold": 0.5,
-      "left": 11,
-      "right": 14,
-      "samples": 5,
-      "question": "Is he comedy actor ?",
-      "left_label": "No",
-      "right_label": "Yes"
+      "type": "leaf",
+      "predicted_class": "Alia Bhatt",
+      "samples": 1
     },
     "11": {
       "type": "internal",
-      "feature": "is_over_35_n",
+      "feature": "is_comedy_actor_n",
       "threshold": 0.5,
       "left": 12,
       "right": 13,
       "samples": 3,
-      "question": "Is the actor over 35 years old",
+      "question": "Is he comedy actor ?",
       "left_label": "No",
       "right_label": "Yes"
     },
     "12": {
       "type": "leaf",
-      "predicted_class": "Ranveer Singh",
-      "samples": 2
-    },
-    "13": {
-      "type": "leaf",
-      "predicted_class": "Aamir Khan",
+      "predicted_class": "Ranbir Kapoor",
       "samples": 1
     },
-    "14": {
+    "13": {
       "type": "leaf",
       "predicted_class": "Ayushmann Khurrana",
       "samples": 2
     },
+    "14": {
+      "type": "internal",
+      "feature": "is_father_famous_n",
+      "threshold": 0.5,
+      "left": 15,
+      "right": 22,
+      "samples": 11,
+      "question": "Is your actor's Father famous ?",
+      "left_label": "No",
+      "right_label": "Yes"
+    },
     "15": {
-      "type": "leaf",
-      "predicted_class": "Akshay Kumar",
-      "samples": 3
+      "type": "internal",
+      "feature": "is_male_n",
+      "threshold": 0.5,
+      "left": 16,
+      "right": 19,
+      "samples": 5,
+      "question": "Is the actor male or Female",
+      "left_label": "Female",
+      "right_label": "Male"
     },
     "16": {
       "type": "internal",
-      "feature": "is_over_35_n",
+      "feature": "has_kids_n",
       "threshold": 0.5,
       "left": 17,
-      "right": 20,
-      "samples": 5,
-      "question": "Is the actor over 35 years old",
+      "right": 18,
+      "samples": 3,
+      "question": "Does your actor have kids ?",
       "left_label": "No",
       "right_label": "Yes"
     },
     "17": {
-      "type": "internal",
-      "feature": "is_male_n",
-      "threshold": 0.5,
-      "left": 18,
-      "right": 19,
-      "samples": 2,
-      "question": "Is the actor male or Female",
-      "left_label": "Female",
-      "right_label": "Male"
+      "type": "leaf",
+      "predicted_class": "Katrina Kaif",
+      "samples": 1
     },
     "18": {
       "type": "leaf",
-      "predicted_class": "Anushka Sharma",
-      "samples": 1
+      "predicted_class": "Rani Mukerji",
+      "samples": 2
     },
     "19": {
-      "type": "leaf",
-      "predicted_class": "Ranbir Kapoor",
-      "samples": 1
+      "type": "internal",
+      "feature": "is_romance_actor_n",
+      "threshold": 0.5,
+      "left": 20,
+      "right": 21,
+      "samples": 2,
+      "question": "Is he romance actor ?",
+      "left_label": "No",
+      "right_label": "Yes"
     },
     "20": {
-      "type": "internal",
-      "feature": "is_male_n",
-      "threshold": 0.5,
-      "left": 21,
-      "right": 22,
-      "samples": 3,
-      "question": "Is the actor male or Female",
-      "left_label": "Female",
-      "right_label": "Male"
+      "type": "leaf",
+      "predicted_class": "Akshay Kumar",
+      "samples": 1
     },
     "21": {
       "type": "leaf",
-      "predicted_class": "Deepika Padukone",
-      "samples": 2
+      "predicted_class": "Shah Rukh Khan",
+      "samples": 1
     },
     "22": {
+      "type": "internal",
+      "feature": "film_producer_n",
+      "threshold": 0.5,
+      "left": 23,
+      "right": 28,
+      "samples": 6,
+      "question": "Is you actor a film producer as well ?",
+      "left_label": "No",
+      "right_label": "Yes"
+    },
+    "23": {
+      "type": "internal",
+      "feature": "is_romance_actor_n",
+      "threshold": 0.5,
+      "left": 24,
+      "right": 25,
+      "samples": 3,
+      "question": "Is he romance actor ?",
+      "left_label": "No",
+      "right_label": "Yes"
+    },
+    "24": {
       "type": "leaf",
-      "predicted_class": "Shah Rukh Khan",
+      "predicted_class": "Priyanka Chopra",
+      "samples": 1
+    },
+    "25": {
+      "type": "internal",
+      "feature": "has_kids_n",
+      "threshold": 0.5,
+      "left": 26,
+      "right": 27,
+      "samples": 2,
+      "question": "Does your actor have kids ?",
+      "left_label": "No",
+      "right_label": "Yes"
+    },
+    "26": {
+      "type": "leaf",
+      "predicted_class": "Deepika Padukone",
+      "samples": 1
+    },
+    "27": {
+      "type": "leaf",
+      "predicted_class": "Kareena Kapoor",
+      "samples": 1
+    },
+    "28": {
+      "type": "internal",
+      "feature": "has_kids_n",
+      "threshold": 0.5,
+      "left": 29,
+      "right": 32,
+      "samples": 3,
+      "question": "Does your actor have kids ?",
+      "left_label": "No",
+      "right_label": "Yes"
+    },
+    "29": {
+      "type": "internal",
+      "feature": "is_muslim_n",
+      "threshold": 0.5,
+      "left": 30,
+      "right": 31,
+      "samples": 2,
+      "question": "Is your actor Muslim ?",
+      "left_label": "No",
+      "right_label": "Yes"
+    },
+    "30": {
+      "type": "leaf",
+      "predicted_class": "Hrithik Roshan",
+      "samples": 1
+    },
+    "31": {
+      "type": "leaf",
+      "predicted_class": "Salman Khan",
+      "samples": 1
+    },
+    "32": {
+      "type": "leaf",
+      "predicted_class": "Aamir Khan",
       "samples": 1
     }
   },
@@ -191,7 +271,14 @@
     "is_action_actor_n",
     "is_romance_actor_n",
     "is_comedy_actor_n",
-    "is_drama_actor_n"
+    "is_drama_actor_n",
+    "is_muslim_n",
+    "is_married_n",
+    "has_kids_n",
+    "happy_new_year_movie_n",
+    "nationality_indian_n",
+    "film_producer_n",
+    "is_father_famous_n"
   ],
   "class_names": [
     "Aamir Khan",
