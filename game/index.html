@@ -35,24 +35,60 @@
             margin-top: 24px;
             color: #0a6;
         }
+
+        select {
+            padding: 8px;
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
     </style>
 </head>
 
 <body>
     <h1>Guess the Actor</h1>
     <div id="game">
-        <div id="questionBox" class="question">Loading...</div>
+        <div id="actorSelectBox">
+            <label for="actorSelect">Choose an actor to play with:</label>
+            <br>
+            <select id="actorSelect">
+                <option value="">--Select Actor--</option>
+            </select>
+            <br>
+            <button id="startBtn" class="btn" disabled>Start Guessing</button>
+        </div>
+
+        <div id="questionBox" class="question" style="display:none;">Loading...</div>
         <div id="options"></div>
         <div id="result" class="result"></div>
     </div>
 
     <script>
         let treeData = null;
+        let actorsList = [];
+        let selectedActor = null;
         let currentNodeId = null;
 
         async function loadTree() {
             const res = await fetch('actor_tree.json');
             treeData = await res.json();
+        }
+
+        async function loadActors() {
+            const res = await fetch('actors.json'); // your JSON file with actor list
+            actorsList = await res.json();
+            const select = document.getElementById('actorSelect');
+
+            actorsList.forEach(actor => {
+                const option = document.createElement('option');
+                option.value = actor;
+                option.textContent = actor;
+                select.appendChild(option);
+            });
+
+            select.onchange = () => {
+                selectedActor = select.value;
+                document.getElementById('startBtn').disabled = !selectedActor;
+            };
         }
 
         function showNode(nodeId) {
@@ -65,24 +101,21 @@
             options.innerHTML = '';
 
             if (node.type === 'leaf') {
-                qBox.textContent = '🎯 I guess: ' + node.predicted_class;
-                // optionally show confidence or samples
+                qBox.textContent = `🎯 I guess: ${node.predicted_class} for ${selectedActor}`;
                 const info = document.createElement('div');
                 info.textContent = 'Samples: ' + node.samples;
                 options.appendChild(info);
 
-                // show restart button
                 const restart = document.createElement('button');
                 restart.className = 'btn';
                 restart.textContent = 'Play again';
-                restart.onclick = () => { currentNodeId = treeData.root; showNode(currentNodeId); };
+                restart.onclick = () => { location.reload(); };
                 options.appendChild(restart);
                 return;
             }
 
-            // internal node
             qBox.textContent = node.question;
-            // left button (corresponds to condition <= threshold)
+
             const leftBtn = document.createElement('button');
             leftBtn.className = 'btn';
             leftBtn.textContent = node.left_label;
@@ -95,21 +128,19 @@
 
             options.appendChild(leftBtn);
             options.appendChild(rightBtn);
-
-            // small hint about what each choice means (optional)
-            const hint = document.createElement('div');
-            hint.style.marginTop = '8px';
-            hint.style.fontSize = '12px';
-            hint.style.color = '#666';
-            hint.textContent = `(Choosing "${node.left_label}" follows left branch; "${node.right_label}" follows right branch.)`;
-            options.appendChild(hint);
         }
 
         // initialize
         (async function () {
             await loadTree();
-            currentNodeId = String(treeData.root);
-            showNode(currentNodeId);
+            await loadActors();
+
+            document.getElementById('startBtn').onclick = () => {
+                document.getElementById('actorSelectBox').style.display = 'none';
+                document.getElementById('questionBox').style.display = 'block';
+                currentNodeId = String(treeData.root);
+                showNode(currentNodeId);
+            };
         })();
     </script>
 </body>
