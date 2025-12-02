@@ -36,27 +36,19 @@
             color: #0a6;
         }
 
-        select {
-            padding: 8px;
+        #actorInfo {
+            margin-bottom: 20px;
             font-size: 16px;
-            margin-bottom: 16px;
+            color: #333;
         }
     </style>
 </head>
 
 <body>
     <h1>Guess the Actor</h1>
-    <div id="game">
-        <div id="actorSelectBox">
-            <label for="actorSelect">Choose an actor to play with:</label>
-            <br>
-            <select id="actorSelect">
-                <option value="">--Select Actor--</option>
-            </select>
-            <br>
-            <button id="startBtn" class="btn" disabled>Start Guessing</button>
-        </div>
+    <div id="actorInfo">Loading supported actors...</div>
 
+    <div id="game">
         <div id="questionBox" class="question" style="display:none;">Loading...</div>
         <div id="options"></div>
         <div id="result" class="result"></div>
@@ -65,30 +57,22 @@
     <script>
         let treeData = null;
         let actorsList = [];
-        let selectedActor = null;
         let currentNodeId = null;
 
+        // Load decision tree JSON
         async function loadTree() {
             const res = await fetch('actor_tree.json');
             treeData = await res.json();
         }
 
-        async function loadActors() {
-            const res = await fetch('actors.json'); // your JSON file with actor list
+        // Load actors JSON and display
+        async function loadActorsInfo() {
+            const res = await fetch('actors.json');
             actorsList = await res.json();
-            const select = document.getElementById('actorSelect');
+            const infoDiv = document.getElementById('actorInfo');
 
-            actorsList.forEach(actor => {
-                const option = document.createElement('option');
-                option.value = actor;
-                option.textContent = actor;
-                select.appendChild(option);
-            });
-
-            select.onchange = () => {
-                selectedActor = select.value;
-                document.getElementById('startBtn').disabled = !selectedActor;
-            };
+            infoDiv.innerHTML = "🎬 Our game supports the following actors. You can guess from these only:<br>" +
+                actorsList.join(", ");
         }
 
         function showNode(nodeId) {
@@ -101,7 +85,7 @@
             options.innerHTML = '';
 
             if (node.type === 'leaf') {
-                qBox.textContent = `🎯 I guess: ${node.predicted_class} for ${selectedActor}`;
+                qBox.textContent = `🎯 I guess: ${node.predicted_class}`;
                 const info = document.createElement('div');
                 info.textContent = 'Samples: ' + node.samples;
                 options.appendChild(info);
@@ -130,17 +114,14 @@
             options.appendChild(rightBtn);
         }
 
-        // initialize
+        // Initialize everything
         (async function () {
+            await loadActorsInfo();
             await loadTree();
-            await loadActors();
 
-            document.getElementById('startBtn').onclick = () => {
-                document.getElementById('actorSelectBox').style.display = 'none';
-                document.getElementById('questionBox').style.display = 'block';
-                currentNodeId = String(treeData.root);
-                showNode(currentNodeId);
-            };
+            document.getElementById('questionBox').style.display = 'block';
+            currentNodeId = String(treeData.root);
+            showNode(currentNodeId);
         })();
     </script>
 </body>
