@@ -1,57 +1,27 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title>Guess the Actor</title>
-    <style>
-        body {
-            font-family: Arial;
-            padding: 30px;
-            max-width: 700px;
-            margin: auto;
-        }
-
-        .question {
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 18px;
-            margin: 8px;
-            border-radius: 6px;
-            cursor: pointer;
-            border: 1px solid #333;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-        }
-
-        .result {
-            font-size: 24px;
-            margin-top: 24px;
-            color: #0a6;
-        }
-
-        #actorInfo {
-            margin-bottom: 20px;
-            font-size: 16px;
-            color: #333;
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-    <h1>Guess the Actor</h1>
-    <div id="actorInfo">Loading supported actors...</div>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center p-6">
+    <div class="w-full max-w-2xl">
+        <h1 class="text-4xl font-bold text-center mb-6 text-indigo-600">🎬 Guess the Actor</h1>
 
-    <div id="game">
-        <div id="questionBox" class="question" style="display:none;">Loading...</div>
-        <div id="options"></div>
-        <div id="result" class="result"></div>
+        <!-- Supported Actors -->
+        <div id="actorInfo" class="bg-white shadow-md rounded-lg p-4 mb-6 text-gray-700 text-center">
+            Loading supported actors...
+        </div>
+
+        <!-- Game Card -->
+        <div id="game" class="bg-white shadow-lg rounded-xl p-6">
+            <div id="questionBox" class="text-xl font-semibold mb-4 text-center hidden"></div>
+            <div id="options" class="flex flex-col md:flex-row justify-center gap-4"></div>
+            <div id="result" class="text-green-600 text-2xl font-bold mt-4 text-center"></div>
+        </div>
     </div>
 
     <script>
@@ -59,20 +29,22 @@
         let actorsList = [];
         let currentNodeId = null;
 
-        // Load decision tree JSON
         async function loadTree() {
             const res = await fetch('actor_tree.json');
             treeData = await res.json();
         }
 
-        // Load actors JSON and display
         async function loadActorsInfo() {
             const res = await fetch('actors.json');
             actorsList = await res.json();
             const infoDiv = document.getElementById('actorInfo');
 
-            infoDiv.innerHTML = "🎬 Our game supports the following actors. You can guess from these only:<br>" +
-                actorsList.join(", ");
+            // Display actors in a nice grid
+            infoDiv.innerHTML = `
+                🎯 Our game supports these actors. You can guess from these only:
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2 text-indigo-700 font-medium">
+                    ${actorsList.map(actor => `<span class="px-2 py-1 bg-indigo-100 rounded">${actor}</span>`).join('')}
+                </div>`;
         }
 
         function showNode(nodeId) {
@@ -83,17 +55,19 @@
 
             result.textContent = '';
             options.innerHTML = '';
+            qBox.classList.remove('hidden');
 
             if (node.type === 'leaf') {
                 qBox.textContent = `🎯 I guess: ${node.predicted_class}`;
                 const info = document.createElement('div');
                 info.textContent = 'Samples: ' + node.samples;
+                info.className = 'text-center mt-2 text-gray-600';
                 options.appendChild(info);
 
                 const restart = document.createElement('button');
-                restart.className = 'btn';
-                restart.textContent = 'Play again';
-                restart.onclick = () => { location.reload(); };
+                restart.className = 'mt-4 px-6 py-2 bg-indigo-600 text-white rounded shadow hover:bg-indigo-700 transition';
+                restart.textContent = 'Play Again';
+                restart.onclick = () => location.reload();
                 options.appendChild(restart);
                 return;
             }
@@ -101,12 +75,12 @@
             qBox.textContent = node.question;
 
             const leftBtn = document.createElement('button');
-            leftBtn.className = 'btn';
+            leftBtn.className = 'px-6 py-2 bg-indigo-500 text-white rounded shadow hover:bg-indigo-600 transition';
             leftBtn.textContent = node.left_label;
             leftBtn.onclick = () => { currentNodeId = node.left; showNode(String(currentNodeId)); };
 
             const rightBtn = document.createElement('button');
-            rightBtn.className = 'btn';
+            rightBtn.className = 'px-6 py-2 bg-green-500 text-white rounded shadow hover:bg-green-600 transition';
             rightBtn.textContent = node.right_label;
             rightBtn.onclick = () => { currentNodeId = node.right; showNode(String(currentNodeId)); };
 
@@ -114,12 +88,11 @@
             options.appendChild(rightBtn);
         }
 
-        // Initialize everything
         (async function () {
             await loadActorsInfo();
             await loadTree();
 
-            document.getElementById('questionBox').style.display = 'block';
+            document.getElementById('questionBox').classList.remove('hidden');
             currentNodeId = String(treeData.root);
             showNode(currentNodeId);
         })();
